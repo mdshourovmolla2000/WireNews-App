@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    <item-->
+<!--        android:id="@+id/navigationViewExistingPLanMenu"-->
+<!--        android:icon="@drawable/existing_plan_icon"-->
+<!--        android:title="Existing Plan" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/navigationViewCustomPLanMenu"-->
+<!--        android:icon="@drawable/custom_plan_icon"-->
+<!--        android:title="Custom Plan" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/navigationViewSignInMenu"-->
+<!--        android:icon="@drawable/sign_in_icon"-->
+<!--        android:title="Sign in" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/navigationViewSignOutMenu"-->
+<!--        android:icon="@drawable/sign_out_icon"-->
+<!--        android:title="Sign out" />-->
+
+</menu>
