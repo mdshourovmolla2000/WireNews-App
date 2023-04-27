@@ -7,6 +7,5 @@
         <item name="android:windowBackground">@color/windowBackgroundColor</item>
         <item name="android:scrollbarSize">4dp</item>
         <item name="android:scrollbarThumbVertical">@color/themeColor</item>
-        <item name="fontFamily">@font/georgia</item>
     </style>
 </resources>

@@ -1,19 +1,30 @@
 package com.shourov.wirenews
 
+import com.shourov.wirenews.model.CategoryModel
+
 class DemoData {
 
     fun topNewsCategoryData(): Array<String> {
         return arrayOf("All", "Economy", "Sports", "Politics", "Science", "More")
     }
 
-//    fun homeFlashItemData(): ArrayList<FlashDealModel>{
-//        val itemList: ArrayList<FlashDealModel> = ArrayList()
-//        itemList.add(FlashDealModel(R.drawable.product_medium_four,"550.00","#D81D4C"))
-//        itemList.add(FlashDealModel(R.drawable.product_medium_two,"230.00","#68C037"))
-//        itemList.add(FlashDealModel(R.drawable.product_medium_three,"1230.00","#094D82"))
-//        itemList.add(FlashDealModel(R.drawable.product_medium_one,"560.00","#2B2B2B"))
-//        itemList.add(FlashDealModel(R.drawable.product_medium_four,"550.00","#D81D4C"))
-//        itemList.add(FlashDealModel(R.drawable.product_medium_two,"230.00","#68C037"))
-//        return itemList
-//    }
+    fun categoryItemData(): ArrayList<CategoryModel>{
+        val itemList: ArrayList<CategoryModel> = ArrayList()
+        itemList.add(CategoryModel(R.drawable.category_image_1,"Politics"))
+        itemList.add(CategoryModel(R.drawable.category_image_2,"Economy"))
+        itemList.add(CategoryModel(R.drawable.category_image_3,"Technology"))
+        itemList.add(CategoryModel(R.drawable.category_image_4,"Entertainment"))
+        itemList.add(CategoryModel(R.drawable.category_image_5,"Sports"))
+        itemList.add(CategoryModel(R.drawable.category_image_6,"Health"))
+        itemList.add(CategoryModel(R.drawable.category_image_7,"Science"))
+        itemList.add(CategoryModel(R.drawable.category_image_8,"Education"))
+        itemList.add(CategoryModel(R.drawable.category_image_9,"Environment"))
+        itemList.add(CategoryModel(R.drawable.category_image_10,"Lifestyle"))
+        itemList.add(CategoryModel(R.drawable.category_image_11,"Travel"))
+        itemList.add(CategoryModel(R.drawable.category_image_12,"Food"))
+        itemList.add(CategoryModel(R.drawable.category_image_13,"Fashion"))
+        itemList.add(CategoryModel(R.drawable.category_image_14,"Art"))
+        itemList.add(CategoryModel(R.drawable.category_image_15,"Crime"))
+        return itemList
+    }
 }

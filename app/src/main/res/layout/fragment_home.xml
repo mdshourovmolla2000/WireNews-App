@@ -109,10 +109,10 @@
                         android:text="aug 13, friday"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:textSize="@dimen/_10sdp"
+                        android:textSize="@dimen/_9sdp"
                         android:textColor="@color/black"
-                        android:fontFamily="@font/georgia_regular"
-                        android:layout_marginTop="@dimen/_1sdp"/>
+                        android:fontFamily="@font/inter_regular"
+                        android:layout_marginTop="@dimen/_2sdp"/>
 
                 </LinearLayout>
 

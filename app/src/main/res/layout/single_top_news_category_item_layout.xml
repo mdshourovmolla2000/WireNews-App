@@ -18,10 +18,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Economy"
-        android:textSize="@dimen/_13sdp"
+        android:textSize="@dimen/_11sdp"
         android:textColor="@color/black"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_5sdp"
-        android:fontFamily="@font/georgia_regular"/>
+        android:fontFamily="@font/inter_regular"/>
 
 </androidx.cardview.widget.CardView>
