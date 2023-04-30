@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -152,7 +153,13 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
     }
 
     override fun onNewsItemClick(currentItem: NewsModel) {
-
+        val bundle = bundleOf(
+            "COVER_IMAGE" to currentItem.coverImage,
+            "CATEGORY_NAME" to currentItem.categoryName,
+            "NEWS_TITLE" to currentItem.newsTitle,
+            "FULL_NEWS" to currentItem.fullNews
+        )
+        findNavController().navigate(R.id.action_homeFragment_to_fullNewsFragment, bundle)
     }
 }
 

@@ -16,6 +16,9 @@
             app:popExitAnim="@anim/pop_exit"
             app:enterAnim="@anim/enter"
             app:exitAnim="@anim/exit"/>
+        <action
+            android:id="@+id/action_homeFragment_to_fullNewsFragment"
+            app:destination="@id/fullNewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -34,5 +37,18 @@
         android:id="@+id/categoryNewsFragment"
         android:name="com.shourov.wirenews.view.CategoryNewsFragment"
         android:label="Category News"
-        tools:layout="@layout/fragment_category_news" />
+        tools:layout="@layout/fragment_category_news" >
+        <action
+            android:id="@+id/action_categoryNewsFragment_to_fullNewsFragment"
+            app:destination="@id/fullNewsFragment"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullNewsFragment"
+        android:name="com.shourov.wirenews.view.FullNewsFragment"
+        android:label="Full News"
+        tools:layout="@layout/fragment_full_news" />
 </navigation>
