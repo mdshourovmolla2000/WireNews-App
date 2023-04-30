@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.shourov.wirenews.R
 import com.shourov.wirenews.adapter.NewsListAdapter
 import com.shourov.wirenews.adapter.TopNewsCategoryListAdapter
+import com.shourov.wirenews.databinding.DialogAppInfoBinding
 import com.shourov.wirenews.databinding.DialogExitBinding
 import com.shourov.wirenews.databinding.FragmentHomeBinding
 import com.shourov.wirenews.`interface`.NewsItemClickListener
@@ -99,12 +100,12 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
         binding.navigationView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
 
-//            when (it.itemId) {
-//                R.id.homeNavigationViewSavedResultsMenu -> {
-//
-//                }
-//                R.id.homeNavigationViewFormulaMenu -> formula()
-//            }
+            when (it.itemId) {
+                R.id.navigationViewCategoryMenu -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
+                }
+                R.id.navigationViewAppInfoMenu -> appInfo()
+            }
 
             return@setNavigationItemSelectedListener true
         }
@@ -113,7 +114,6 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
 
         return binding.root
     }
-
 
     private fun observerList() {
         viewModel.topNewsCategoryLiveData.observe(viewLifecycleOwner) {
@@ -135,6 +135,30 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
 
             binding.newsRecyclerview.adapter?.notifyDataSetChanged()
         }
+    }
+
+
+    private fun appInfo() {
+        val builder = AlertDialog.Builder(requireContext())
+        val dialogBinding = DialogAppInfoBinding.inflate(layoutInflater)
+
+        builder.setView(dialogBinding.root)
+        builder.setCancelable(true)
+
+        val alertDialog = builder.create()
+
+        //make transparent to default dialog
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(0))
+
+        try {
+            val pInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
+            val appVersion = pInfo.versionCode.toString() + "." + pInfo.versionName.toString()
+            dialogBinding.appVersionTextview.text = "Version: $appVersion"
+        } catch (e: Exception) {
+            dialogBinding.appVersionTextview.text = "Version 1.1.0"
+        }
+
+        alertDialog.show()
     }
 
 
