@@ -40,6 +40,10 @@ class NewsListAdapter(private val itemList: ArrayList<NewsModel>, private val it
             binding.categoryNameTextview.text = currentItem.categoryName.uppercase()
 
             binding.newsTitleTextview.text = currentItem.newsTitle
+
+            itemView.setOnClickListener {
+                itemClickListener.onNewsItemClick(currentItem)
+            }
         }
 
     }

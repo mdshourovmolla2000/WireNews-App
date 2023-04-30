@@ -18,7 +18,11 @@
             app:exitAnim="@anim/exit"/>
         <action
             android:id="@+id/action_homeFragment_to_fullNewsFragment"
-            app:destination="@id/fullNewsFragment" />
+            app:destination="@id/fullNewsFragment"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
