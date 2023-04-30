@@ -7,6 +7,8 @@
     <color name="themeColor">#37474F</color>
     <color name="windowBackgroundColor">#FFFFFF</color>
 
+    <color name="blackTextColor">#252525</color>
+
     <color name="navigationViewIconColor">#252525</color>
     <color name="navigationViewTextColor">#252525</color>
 </resources>

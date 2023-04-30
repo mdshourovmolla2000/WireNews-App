@@ -22,7 +22,7 @@
             android:background="@color/themeColor">
 
             <ImageView
-                android:id="@+id/homeMenuIcon"
+                android:id="@+id/navigationViewMenuIcon"
                 android:layout_width="@dimen/_29sdp"
                 android:layout_height="@dimen/_29sdp"
                 android:layout_marginStart="@dimen/_5sdp"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/homeMenuIcon"
+                app:layout_constraintStart_toEndOf="@id/navigationViewMenuIcon"
                 app:layout_constraintEnd_toStartOf="@id/searchIcon"
                 android:text="@string/app_name"
                 android:textColor="@color/white"
@@ -140,32 +140,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start">
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:headerLayout="@layout/navigation_view_header_layout"
-            app:itemIconTint="@color/navigationViewIconColor"
-            app:itemMaxLines="2"
-            app:itemTextColor="@color/navigationViewTextColor"
-            app:menu="@menu/navigation_view_menu"
-            android:background="@color/windowBackgroundColor"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:background="@color/themeColor"
-            android:layout_gravity="bottom"
-            android:textSize="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_8sdp"
-            android:textColor="@color/white"
-            android:gravity="center"/>
-
-    </com.google.android.material.navigation.NavigationView>
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_view_header_layout"
+        app:itemIconTint="@color/navigationViewIconColor"
+        app:itemMaxLines="2"
+        app:itemTextColor="@color/navigationViewTextColor"
+        app:menu="@menu/navigation_view_menu"
+        style="@style/AppNavigationView"
+        android:background="@color/windowBackgroundColor"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

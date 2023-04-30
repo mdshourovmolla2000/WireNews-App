@@ -1,7 +1,6 @@
 package com.shourov.wirenews.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import com.shourov.wirenews.databinding.SingleTopNewsCategoryItemLayoutBinding
 import com.shourov.wirenews.`interface`.TopNewsCategoryItemClickListener
 
 class TopNewsCategoryListAdapter(
-    private val context: Context,
     private var itemList: ArrayList<String>,
     currentTopNewsCategoryPosition: Int,
     private val itemClickListener: TopNewsCategoryItemClickListener
@@ -23,7 +21,7 @@ class TopNewsCategoryListAdapter(
     private var currentIndex = currentTopNewsCategoryPosition
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.single_top_news_category_item_layout, parent, false)
 
         return ItemViewHolder(view)
@@ -46,11 +44,11 @@ class TopNewsCategoryListAdapter(
 
             //selecting bg color of current selected item
             if (currentIndex == position) {
-                binding.categoryNameCardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.themeColor))
-                binding.categoryNameTextview.setTextColor(ContextCompat.getColor(context, R.color.white))
+                binding.categoryNameCardView.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.themeColor))
+                binding.categoryNameTextview.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
             } else {
                 binding.categoryNameCardView.setCardBackgroundColor(Color.parseColor("#EEEEEE"))
-                binding.categoryNameTextview.setTextColor(ContextCompat.getColor(context, R.color.black))
+                binding.categoryNameTextview.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
             }
 
             binding.categoryNameTextview.text = currentItem
