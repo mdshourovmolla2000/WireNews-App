@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.shourov.wirenews.R
 import com.shourov.wirenews.adapter.CategoryListAdapter
 import com.shourov.wirenews.databinding.FragmentCategoryBinding
 import com.shourov.wirenews.`interface`.CategoryItemClickListener
@@ -54,7 +56,10 @@ class CategoryFragment : Fragment(), CategoryItemClickListener {
     }
 
     override fun onCategoryItemClick(currentItem: CategoryModel) {
-
+        val bundle = bundleOf(
+            "CATEGORY_NAME" to currentItem.categoryName
+        )
+        findNavController().navigate(R.id.action_categoryFragment_to_categoryNewsFragment, bundle)
     }
 }
 

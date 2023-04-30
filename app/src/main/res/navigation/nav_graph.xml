@@ -21,5 +21,18 @@
         android:id="@+id/categoryFragment"
         android:name="com.shourov.wirenews.view.CategoryFragment"
         android:label="Category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_categoryNewsFragment"
+            app:destination="@id/categoryNewsFragment"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"/>
+    </fragment>
+    <fragment
+        android:id="@+id/categoryNewsFragment"
+        android:name="com.shourov.wirenews.view.CategoryNewsFragment"
+        android:label="Category News"
+        tools:layout="@layout/fragment_category_news" />
 </navigation>
