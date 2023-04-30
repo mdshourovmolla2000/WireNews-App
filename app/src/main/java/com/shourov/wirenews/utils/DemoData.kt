@@ -1,5 +1,6 @@
-package com.shourov.wirenews
+package com.shourov.wirenews.utils
 
+import com.shourov.wirenews.R
 import com.shourov.wirenews.model.CategoryModel
 
 class DemoData {
