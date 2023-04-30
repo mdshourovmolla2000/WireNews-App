@@ -1,39 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+<androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/_5sdp">
-
-    <ImageView
-        android:id="@+id/newsCoverImageview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintDimensionRatio="1:0.35"
-        android:src="@drawable/image_placeholder"
-        android:scaleType="centerCrop"/>
+    android:layout_margin="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="@dimen/_5sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/newsCoverImageview"
-        android:padding="@dimen/_9sdp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/categoryTextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/newsCoverImageview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="CATEGORY"
-            android:textSize="@dimen/_9sdp"
-            android:textColor="#9E9E9E"
-            android:fontFamily="@font/sf_pro_text_medium"/>
+            app:layout_constraintDimensionRatio="1:0.35"
+            android:src="@drawable/image_placeholder"
+            android:scaleType="centerCrop"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/newsCoverImageview"
+            android:padding="@dimen/_9sdp">
+
+            <TextView
+                android:id="@+id/categoryTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="CATEGORY"
+                android:textSize="@dimen/_9sdp"
+                android:textColor="#9E9E9E"
+                android:fontFamily="@font/sf_pro_text_medium"/>
+
+            <TextView
+                android:id="@+id/titleTextview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categoryTextview"
+                android:text="Title Here"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter_bold"
+                android:layout_marginTop="@dimen/_6sdp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
