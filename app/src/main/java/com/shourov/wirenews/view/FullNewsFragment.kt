@@ -1,5 +1,6 @@
 package com.shourov.wirenews.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +39,15 @@ class FullNewsFragment : Fragment() {
         binding.newsTitleTextview.text = newsTitle
         binding.fullNewsTextview.text = fullNews
 
+        binding.shareIcon.setOnClickListener { shareNews() }
+
         return binding.root
+    }
+
+    private fun shareNews() {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, newsTitle + "\n\n" + fullNews)
+        startActivity(Intent.createChooser(intent, "Share via"))
     }
 }

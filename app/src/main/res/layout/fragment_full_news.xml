@@ -40,10 +40,24 @@
             android:textSize="@dimen/_18sdp"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/shareIcon"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/backIcon"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/shareIcon"
+            android:layout_width="@dimen/_29sdp"
+            android:layout_height="@dimen/_29sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:background="@drawable/ripple_effect_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/newa_share_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
