@@ -14,7 +14,7 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintDimensionRatio="1:.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/categoryNameTextview"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,9 @@
                 android:text="Category"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp"
-                android:fontFamily="@font/georgia_bold"/>
+                android:fontFamily="@font/georgia_bold"
+                android:paddingHorizontal="@dimen/_5sdp"
+                android:gravity="center_horizontal"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
