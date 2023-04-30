@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.shourov.wirenews.R
 import com.shourov.wirenews.databinding.SingleCategoryItemLayoutBinding
 import com.shourov.wirenews.`interface`.CategoryItemClickListener
 import com.shourov.wirenews.model.CategoryModel
 import com.shourov.wirenews.utils.loadImage
 
-class CategoryListAdapter(private var itemList: ArrayList<CategoryModel>, private val itemClickListener: CategoryItemClickListener) : RecyclerView.Adapter<CategoryListAdapter.ItemViewHolder>() {
+class CategoryListAdapter(private val itemList: ArrayList<CategoryModel>, private val itemClickListener: CategoryItemClickListener) : RecyclerView.Adapter<CategoryListAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.single_category_item_layout, parent, false)

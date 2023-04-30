@@ -3,6 +3,7 @@ package com.shourov.wirenews.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.shourov.wirenews.model.NewsModel
 import com.shourov.wirenews.repository.HomeRepository
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -16,6 +17,13 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
         get() = _topNewsCategoryLiveData
 
     fun getTopNewsCategory() = _topNewsCategoryLiveData.postValue(repository.getTopNewsCategory().toList())
+
+
+    private val _newsLiveData = MutableLiveData<ArrayList<NewsModel>>()
+    val newsLiveData: LiveData<ArrayList<NewsModel>>
+        get() = _newsLiveData
+
+    fun getNews(categoryName: String) = _newsLiveData.postValue(repository.getNews(categoryName))
 
 
     fun getCurrentDate(): String {

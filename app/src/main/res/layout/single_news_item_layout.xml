@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +7,10 @@
     android:layout_margin="@dimen/_5sdp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="0dp"
-    app:cardElevation="@dimen/_5sdp">
+    app:cardElevation="@dimen/_3sdp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +34,7 @@
             android:padding="@dimen/_9sdp">
 
             <TextView
-                android:id="@+id/categoryTextview"
+                android:id="@+id/categoryNameTextview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,11 +45,11 @@
                 android:fontFamily="@font/sf_pro_text_medium"/>
 
             <TextView
-                android:id="@+id/titleTextview"
+                android:id="@+id/newsTitleTextview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/categoryTextview"
+                app:layout_constraintTop_toBottomOf="@id/categoryNameTextview"
                 android:text="Title Here"
                 android:textSize="@dimen/_14sdp"
                 android:textColor="@color/black"

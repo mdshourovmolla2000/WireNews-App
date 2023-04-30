@@ -13,21 +13,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.shourov.wirenews.R
+import com.shourov.wirenews.adapter.NewsListAdapter
 import com.shourov.wirenews.adapter.TopNewsCategoryListAdapter
 import com.shourov.wirenews.databinding.DialogExitBinding
 import com.shourov.wirenews.databinding.FragmentHomeBinding
+import com.shourov.wirenews.`interface`.NewsItemClickListener
 import com.shourov.wirenews.`interface`.TopNewsCategoryItemClickListener
+import com.shourov.wirenews.model.NewsModel
 import com.shourov.wirenews.repository.HomeRepository
 import com.shourov.wirenews.view_model.HomeViewModel
 
-class HomeFragment : Fragment(), TopNewsCategoryItemClickListener {
+class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClickListener {
 
     private lateinit var binding: FragmentHomeBinding
 
     private lateinit var viewModel: HomeViewModel
 
-    private var topNewsCategoryList = ArrayList<String>()
+    private val topNewsCategoryList = ArrayList<String>()
     private var currentTopNewsCategoryPosition = 0
+    private var currentNewsCategory = "All"
+
+    private val newsList = ArrayList<NewsModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,11 +79,16 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener {
         binding.currentDateTextview.text = viewModel.getCurrentDate()
 
         viewModel.getTopNewsCategory()
+        viewModel.getNews(currentNewsCategory)
 
         observerList()
 
         binding.topNewsCategoryRecyclerview.apply {
             adapter = TopNewsCategoryListAdapter(topNewsCategoryList, currentTopNewsCategoryPosition, this@HomeFragment)
+        }
+
+        binding.newsRecyclerview.apply {
+            adapter = NewsListAdapter(newsList, this@HomeFragment)
         }
 
         binding.navigationViewMenuIcon.setOnClickListener {
@@ -109,6 +120,20 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener {
             topNewsCategoryList.addAll(ArrayList(it))
             binding.topNewsCategoryRecyclerview.adapter?.notifyDataSetChanged()
         }
+
+        viewModel.newsLiveData.observe(viewLifecycleOwner) {
+            newsList.clear()
+            if (it.isNullOrEmpty()) {
+                binding.newsRecyclerview.visibility = View.GONE
+                binding.noNewsAvailableTextview.visibility = View.VISIBLE
+            } else {
+                newsList.addAll(it)
+                binding.noNewsAvailableTextview.visibility = View.GONE
+                binding.newsRecyclerview.visibility = View.VISIBLE
+            }
+
+            binding.newsRecyclerview.adapter?.notifyDataSetChanged()
+        }
     }
 
 
@@ -116,9 +141,18 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener {
         when(currentItem) {
             "More" -> findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
             else -> {
-                currentTopNewsCategoryPosition = currentItemPosition
+                if (currentTopNewsCategoryPosition != currentItemPosition) {
+                    currentTopNewsCategoryPosition = currentItemPosition
+                    currentNewsCategory = currentItem
+                    viewModel.getNews(currentNewsCategory)
+                }
+
             }
         }
+    }
+
+    override fun onNewsItemClick(currentItem: NewsModel) {
+
     }
 }
 

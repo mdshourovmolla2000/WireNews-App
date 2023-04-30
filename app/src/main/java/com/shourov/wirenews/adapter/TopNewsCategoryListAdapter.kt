@@ -12,7 +12,7 @@ import com.shourov.wirenews.databinding.SingleTopNewsCategoryItemLayoutBinding
 import com.shourov.wirenews.`interface`.TopNewsCategoryItemClickListener
 
 class TopNewsCategoryListAdapter(
-    private var itemList: ArrayList<String>,
+    private val itemList: ArrayList<String>,
     currentTopNewsCategoryPosition: Int,
     private val itemClickListener: TopNewsCategoryItemClickListener
 ) :
