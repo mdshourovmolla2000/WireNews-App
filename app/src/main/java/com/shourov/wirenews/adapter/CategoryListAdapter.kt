@@ -15,7 +15,6 @@ class CategoryListAdapter(private val itemList: ArrayList<CategoryModel>, privat
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.single_category_item_layout, parent, false)
-
         return ItemViewHolder(view)
     }
 
@@ -28,13 +27,11 @@ class CategoryListAdapter(private val itemList: ArrayList<CategoryModel>, privat
     }
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         private val binding = SingleCategoryItemLayoutBinding.bind(itemView)
 
         @SuppressLint("SetTextI18n")
         fun onBind(currentItem: CategoryModel) {
             binding.categoryImageImageview.loadImage(currentItem.categoryImage)
-
             binding.categoryNameTextview.text = currentItem.categoryName
 
             binding.categoryCardView.setOnClickListener {

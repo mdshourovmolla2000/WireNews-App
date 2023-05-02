@@ -15,9 +15,7 @@ class NewsListAdapter(private val itemList: ArrayList<NewsModel>, private val it
     RecyclerView.Adapter<NewsListAdapter.ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.single_news_item_layout, parent, false)
-
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.single_news_item_layout, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -30,15 +28,12 @@ class NewsListAdapter(private val itemList: ArrayList<NewsModel>, private val it
     }
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         private val binding = SingleNewsItemLayoutBinding.bind(itemView)
 
         @SuppressLint("SetTextI18n")
         fun onBind(currentItem: NewsModel) {
             binding.newsCoverImageview.loadImage(currentItem.coverImage)
-
             binding.categoryNameTextview.text = currentItem.categoryName.uppercase()
-
             binding.newsTitleTextview.text = currentItem.newsTitle
 
             itemView.setOnClickListener {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.CategoryNewsFragment">
+    tools:context=".view.SearchFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/titleBarLayout"
@@ -29,21 +29,59 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/titleTextview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toEndOf="@id/backIcon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginHorizontal="@dimen/_9sdp"
-            android:text="Category Name"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_18sdp"
-            android:fontFamily="@font/georgia_bold"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_3sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/searchTitleEdittext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/clearIcon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constrainedWidth="true"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:hint="Enter news title"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/blackTextColor"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:background="@null"/>
+
+                <ImageView
+                    android:id="@+id/clearIcon"
+                    android:layout_width="@dimen/_29sdp"
+                    android:layout_height="@dimen/_29sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:background="@drawable/ripple_effect_background"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/clear_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -54,7 +92,7 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryNewsRecyclerview"
+            android:id="@+id/searchNewsRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -62,7 +100,7 @@
             android:layout_margin="@dimen/_5sdp"/>
 
         <TextView
-            android:id="@+id/noNewsAvailableTextview"
+            android:id="@+id/noNewsFoundTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"

@@ -40,7 +40,10 @@ class CategoryNewsFragment : Fragment(), NewsItemClickListener {
 
         binding.titleTextview.text = categoryName
 
-        viewModel = ViewModelProvider(this, CategoryNewsViewModelFactory(CategoryNewsRepository()))[CategoryNewsViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            CategoryNewsViewModelFactory(CategoryNewsRepository())
+        )[CategoryNewsViewModel::class.java]
 
         viewModel.getCategoryNews(categoryName)
 
@@ -81,7 +84,8 @@ class CategoryNewsFragment : Fragment(), NewsItemClickListener {
 }
 
 
-
-class CategoryNewsViewModelFactory(private val repository: CategoryNewsRepository): ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T = CategoryNewsViewModel(repository) as T
+class CategoryNewsViewModelFactory(private val repository: CategoryNewsRepository) :
+    ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T =
+        CategoryNewsViewModel(repository) as T
 }

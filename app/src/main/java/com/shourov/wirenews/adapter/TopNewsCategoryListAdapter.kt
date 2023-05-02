@@ -21,9 +21,7 @@ class TopNewsCategoryListAdapter(
     private var currentIndex = currentTopNewsCategoryPosition
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.single_top_news_category_item_layout, parent, false)
-
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.single_top_news_category_item_layout, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -36,12 +34,10 @@ class TopNewsCategoryListAdapter(
     }
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         private val binding = SingleTopNewsCategoryItemLayoutBinding.bind(itemView)
 
         @SuppressLint("SetTextI18n")
         fun onBind(currentItem: String, position: Int) {
-
             //selecting bg color of current selected item
             if (currentIndex == position) {
                 binding.categoryNameCardView.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.themeColor))

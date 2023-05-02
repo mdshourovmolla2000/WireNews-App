@@ -110,7 +110,7 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
             return@setNavigationItemSelectedListener true
         }
 
-
+        binding.searchIcon.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_searchFragment) }
 
         return binding.root
     }
