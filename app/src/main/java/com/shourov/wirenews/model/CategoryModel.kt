@@ -1,3 +1,3 @@
 package com.shourov.wirenews.model
 
-class CategoryModel(var categoryImage: Int, var categoryName: String)
+data class CategoryModel(var categoryImage: Int, var categoryName: String)
