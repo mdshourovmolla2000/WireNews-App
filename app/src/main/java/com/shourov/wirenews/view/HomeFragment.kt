@@ -37,7 +37,6 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
 
     private val newsList = ArrayList<NewsModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
@@ -85,28 +84,19 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
 
         observerList()
 
-        binding.topNewsCategoryRecyclerview.apply {
-            adapter = TopNewsCategoryListAdapter(topNewsCategoryList, currentTopNewsCategoryPosition, this@HomeFragment)
-        }
+        binding.topNewsCategoryRecyclerview.adapter = TopNewsCategoryListAdapter(topNewsCategoryList, currentTopNewsCategoryPosition, this@HomeFragment)
+        binding.newsRecyclerview.adapter = NewsListAdapter(newsList, this@HomeFragment)
 
-        binding.newsRecyclerview.apply {
-            adapter = NewsListAdapter(newsList, this@HomeFragment)
-        }
-
-        binding.navigationViewMenuIcon.setOnClickListener {
-            binding.drawerLayout.open()
-        }
+        binding.navigationViewMenuIcon.setOnClickListener { binding.drawerLayout.open() }
 
         binding.navigationView.setNavigationItemSelectedListener {
             binding.drawerLayout.close()
-
             when (it.itemId) {
                 R.id.navigationViewCategoryMenu -> {
                     findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
                 }
                 R.id.navigationViewAppInfoMenu -> appInfo()
             }
-
             return@setNavigationItemSelectedListener true
         }
 
@@ -132,7 +122,6 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
                 binding.noNewsAvailableTextview.visibility = View.GONE
                 binding.newsRecyclerview.visibility = View.VISIBLE
             }
-
             binding.newsRecyclerview.adapter?.notifyDataSetChanged()
         }
     }
@@ -171,7 +160,6 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
                     currentNewsCategory = currentItem
                     viewModel.getNews(currentNewsCategory)
                 }
-
             }
         }
     }

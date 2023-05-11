@@ -4,5 +4,5 @@ import com.shourov.wirenews.utils.DemoData
 import com.shourov.wirenews.model.CategoryModel
 
 class CategoryRepository {
-    fun getCategory(): ArrayList<CategoryModel> = DemoData().categoryItemData()
+    fun getCategory(): List<CategoryModel> = DemoData().categoryItemData()
 }

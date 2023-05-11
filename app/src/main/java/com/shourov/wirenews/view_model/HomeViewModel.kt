@@ -19,8 +19,8 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     fun getTopNewsCategory() = _topNewsCategoryLiveData.postValue(repository.getTopNewsCategory().toList())
 
 
-    private val _newsLiveData = MutableLiveData<ArrayList<NewsModel>>()
-    val newsLiveData: LiveData<ArrayList<NewsModel>>
+    private val _newsLiveData = MutableLiveData<List<NewsModel>>()
+    val newsLiveData: LiveData<List<NewsModel>>
         get() = _newsLiveData
 
     fun getNews(categoryName: String) = _newsLiveData.postValue(repository.getNews(categoryName))

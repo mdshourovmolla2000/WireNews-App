@@ -10,7 +10,7 @@ class DemoData {
         return arrayOf("All", "Economy", "Sports", "Politics", "Science", "More")
     }
 
-    fun categoryItemData(): ArrayList<CategoryModel>{
+    fun categoryItemData(): List<CategoryModel>{
         val itemList: ArrayList<CategoryModel> = ArrayList()
         itemList.add(CategoryModel(R.drawable.category_image_1,"Politics"))
         itemList.add(CategoryModel(R.drawable.category_image_2,"Economy"))
@@ -30,7 +30,7 @@ class DemoData {
         return itemList
     }
 
-    fun newsItemData(): ArrayList<NewsModel>{
+    fun newsItemData(): List<NewsModel>{
         val itemList: ArrayList<NewsModel> = ArrayList()
         itemList.add(NewsModel(R.drawable.politics_news_cover_image_1,"Politics", "A group of doctors led by Jahidul Bari join Jatiya Party", "Jatiya Chikitshak Parishad, a physicians’ body of the main opposition in parliament Jatiya Party, has started its journey on Thursday.\n" +
                 "\n" +

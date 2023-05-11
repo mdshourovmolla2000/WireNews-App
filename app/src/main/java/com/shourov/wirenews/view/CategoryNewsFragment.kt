@@ -40,18 +40,13 @@ class CategoryNewsFragment : Fragment(), NewsItemClickListener {
 
         binding.titleTextview.text = categoryName
 
-        viewModel = ViewModelProvider(
-            this,
-            CategoryNewsViewModelFactory(CategoryNewsRepository())
-        )[CategoryNewsViewModel::class.java]
+        viewModel = ViewModelProvider(this, CategoryNewsViewModelFactory(CategoryNewsRepository()))[CategoryNewsViewModel::class.java]
 
         viewModel.getCategoryNews(categoryName)
 
         observerList()
 
-        binding.categoryNewsRecyclerview.apply {
-            adapter = NewsListAdapter(categoryNewsList, this@CategoryNewsFragment)
-        }
+        binding.categoryNewsRecyclerview.adapter = NewsListAdapter(categoryNewsList, this@CategoryNewsFragment)
 
         return binding.root
     }

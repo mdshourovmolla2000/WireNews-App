@@ -69,7 +69,7 @@
                     android:layout_width="@dimen/_29sdp"
                     android:layout_height="@dimen/_29sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:background="@drawable/ripple_effect_background"
+                    android:background="@drawable/ripple_effect_background_in_white"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="@dimen/_5sdp"

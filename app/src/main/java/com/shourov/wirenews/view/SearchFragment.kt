@@ -40,7 +40,7 @@ class SearchFragment : Fragment(), NewsItemClickListener {
 
         observerList()
 
-        binding.searchNewsRecyclerview.apply { adapter = NewsListAdapter(newsList, this@SearchFragment) }
+        binding.searchNewsRecyclerview.adapter = NewsListAdapter(newsList, this@SearchFragment)
 
         binding.clearIcon.setOnClickListener { binding.searchTitleEdittext.text.clear() }
 

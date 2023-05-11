@@ -6,7 +6,7 @@ import com.shourov.wirenews.utils.DemoData
 class HomeRepository {
     fun getTopNewsCategory(): Array<String> = DemoData().topNewsCategoryData()
 
-    fun getNews(categoryName: String): ArrayList<NewsModel> {
+    fun getNews(categoryName: String): List<NewsModel> {
         return if (categoryName == "All") {
             DemoData().newsItemData()
         } else {
