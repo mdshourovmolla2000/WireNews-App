@@ -43,7 +43,6 @@
             android:fontFamily="@font/inter_bold"
             android:layout_marginTop="@dimen/_5sdp"/>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

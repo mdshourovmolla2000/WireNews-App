@@ -61,7 +61,6 @@
             app:spanCount="2"
             android:layout_margin="@dimen/_5sdp"/>
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
