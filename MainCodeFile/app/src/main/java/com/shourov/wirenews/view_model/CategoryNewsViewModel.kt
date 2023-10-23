@@ -8,8 +8,7 @@ import com.shourov.wirenews.repository.CategoryNewsRepository
 
 class CategoryNewsViewModel(private val repository: CategoryNewsRepository) : ViewModel() {
     private val _categoryNewsLiveData = MutableLiveData<List<NewsModel>>()
-    val categoryNewsLiveData: LiveData<List<NewsModel>>
-        get() = _categoryNewsLiveData
+    val categoryNewsLiveData: LiveData<List<NewsModel>> get() = _categoryNewsLiveData
 
     fun getCategoryNews(categoryName: String) = _categoryNewsLiveData.postValue(repository.getCategoryNews(categoryName))
 }

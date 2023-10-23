@@ -1,4 +1,4 @@
-package com.shourov.wirenews.`interface`
+package com.shourov.wirenews.interfaces
 
 import com.shourov.wirenews.model.CategoryModel
 

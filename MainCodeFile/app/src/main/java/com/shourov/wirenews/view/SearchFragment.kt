@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.shourov.wirenews.R
 import com.shourov.wirenews.adapter.NewsListAdapter
 import com.shourov.wirenews.databinding.FragmentSearchBinding
-import com.shourov.wirenews.`interface`.NewsItemClickListener
+import com.shourov.wirenews.interfaces.NewsItemClickListener
 import com.shourov.wirenews.model.NewsModel
 import com.shourov.wirenews.repository.SearchRepository
 import com.shourov.wirenews.view_model.SearchViewModel
@@ -51,7 +51,7 @@ class SearchFragment : Fragment(), NewsItemClickListener {
             } else {
                 newsList.clear()
                 binding.searchNewsRecyclerview.adapter?.notifyDataSetChanged()
-                binding.noNewsFoundTextview.visibility = View.GONE
+                binding.nothingFoundLayout.visibility = View.GONE
             }
         }
 
@@ -62,9 +62,9 @@ class SearchFragment : Fragment(), NewsItemClickListener {
         viewModel.searchResultLiveData.observe(viewLifecycleOwner) {
             if (it.isNullOrEmpty()) {
                 binding.searchNewsRecyclerview.visibility = View.GONE
-                binding.noNewsFoundTextview.visibility = View.VISIBLE
+                binding.nothingFoundLayout.visibility = View.VISIBLE
             } else {
-                binding.noNewsFoundTextview.visibility = View.GONE
+                binding.nothingFoundLayout.visibility = View.GONE
                 binding.searchNewsRecyclerview.visibility = View.VISIBLE
 
                 newsList.clear()

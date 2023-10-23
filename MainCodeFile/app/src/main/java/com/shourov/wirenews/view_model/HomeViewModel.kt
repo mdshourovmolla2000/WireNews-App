@@ -13,15 +13,13 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     private val calendar = Calendar.getInstance()
 
     private val _topNewsCategoryLiveData = MutableLiveData<List<String>>()
-    val topNewsCategoryLiveData: LiveData<List<String>>
-        get() = _topNewsCategoryLiveData
+    val topNewsCategoryLiveData: LiveData<List<String>> get() = _topNewsCategoryLiveData
 
     fun getTopNewsCategory() = _topNewsCategoryLiveData.postValue(repository.getTopNewsCategory().toList())
 
 
     private val _newsLiveData = MutableLiveData<List<NewsModel>>()
-    val newsLiveData: LiveData<List<NewsModel>>
-        get() = _newsLiveData
+    val newsLiveData: LiveData<List<NewsModel>> get() = _newsLiveData
 
     fun getNews(categoryName: String) = _newsLiveData.postValue(repository.getNews(categoryName))
 

@@ -19,8 +19,8 @@ import com.shourov.wirenews.adapter.TopNewsCategoryListAdapter
 import com.shourov.wirenews.databinding.DialogAppInfoBinding
 import com.shourov.wirenews.databinding.DialogExitBinding
 import com.shourov.wirenews.databinding.FragmentHomeBinding
-import com.shourov.wirenews.`interface`.NewsItemClickListener
-import com.shourov.wirenews.`interface`.TopNewsCategoryItemClickListener
+import com.shourov.wirenews.interfaces.NewsItemClickListener
+import com.shourov.wirenews.interfaces.TopNewsCategoryItemClickListener
 import com.shourov.wirenews.model.NewsModel
 import com.shourov.wirenews.repository.HomeRepository
 import com.shourov.wirenews.view_model.HomeViewModel

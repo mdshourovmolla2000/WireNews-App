@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shourov.wirenews.R
 import com.shourov.wirenews.databinding.SingleNewsItemLayoutBinding
-import com.shourov.wirenews.`interface`.NewsItemClickListener
+import com.shourov.wirenews.interfaces.NewsItemClickListener
 import com.shourov.wirenews.model.NewsModel
 import com.shourov.wirenews.utils.loadImage
 
@@ -19,25 +19,20 @@ class NewsListAdapter(private val itemList: ArrayList<NewsModel>, private val it
         return ItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.onBind(itemList[position])
-    }
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) = holder.onBind(itemList[position])
 
-    override fun getItemCount(): Int {
-        return itemList.size
-    }
+    override fun getItemCount(): Int = itemList.size
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = SingleNewsItemLayoutBinding.bind(itemView)
 
         @SuppressLint("SetTextI18n")
         fun onBind(currentItem: NewsModel) {
-            binding.newsCoverImageview.loadImage(currentItem.coverImage)
-            binding.categoryNameTextview.text = currentItem.categoryName.uppercase()
-            binding.newsTitleTextview.text = currentItem.newsTitle
-
-            itemView.setOnClickListener {
-                itemClickListener.onNewsItemClick(currentItem)
+            binding.apply {
+                newsCoverImageview.loadImage(currentItem.coverImage)
+                categoryNameTextview.text = currentItem.categoryName.uppercase()
+                newsTitleTextview.text = currentItem.newsTitle
+                itemCardView.setOnClickListener { itemClickListener.onNewsItemClick(currentItem) }
             }
         }
 

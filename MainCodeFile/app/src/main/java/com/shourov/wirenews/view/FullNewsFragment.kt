@@ -32,14 +32,14 @@ class FullNewsFragment : Fragment() {
         newsTitle = arguments?.getString("NEWS_TITLE").toString()
         fullNews = arguments?.getString("FULL_NEWS").toString()
 
-        binding.backIcon.setOnClickListener { findNavController().popBackStack() }
-
-        binding.coverImageImageview.loadImage(coverImage)
-        binding.categoryNameTextview.text = categoryName
-        binding.newsTitleTextview.text = newsTitle
-        binding.fullNewsTextview.text = fullNews
-
-        binding.shareIcon.setOnClickListener { shareNews() }
+        binding.apply {
+            backIcon.setOnClickListener { findNavController().popBackStack() }
+            coverImageImageview.loadImage(coverImage)
+            categoryNameTextview.text = categoryName
+            newsTitleTextview.text = newsTitle
+            fullNewsTextview.text = fullNews
+            shareIcon.setOnClickListener { shareNews() }
+        }
 
         return binding.root
     }

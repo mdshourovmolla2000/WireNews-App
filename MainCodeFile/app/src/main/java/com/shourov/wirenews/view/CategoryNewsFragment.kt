@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.shourov.wirenews.R
 import com.shourov.wirenews.adapter.NewsListAdapter
 import com.shourov.wirenews.databinding.FragmentCategoryNewsBinding
-import com.shourov.wirenews.`interface`.NewsItemClickListener
+import com.shourov.wirenews.interfaces.NewsItemClickListener
 import com.shourov.wirenews.model.NewsModel
 import com.shourov.wirenews.repository.CategoryNewsRepository
 import com.shourov.wirenews.view_model.CategoryNewsViewModel
@@ -40,13 +40,17 @@ class CategoryNewsFragment : Fragment(), NewsItemClickListener {
 
         binding.titleTextview.text = categoryName
 
-        viewModel = ViewModelProvider(this, CategoryNewsViewModelFactory(CategoryNewsRepository()))[CategoryNewsViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            CategoryNewsViewModelFactory(CategoryNewsRepository())
+        )[CategoryNewsViewModel::class.java]
 
         viewModel.getCategoryNews(categoryName)
 
         observerList()
 
-        binding.categoryNewsRecyclerview.adapter = NewsListAdapter(categoryNewsList, this@CategoryNewsFragment)
+        binding.categoryNewsRecyclerview.adapter =
+            NewsListAdapter(categoryNewsList, this@CategoryNewsFragment)
 
         return binding.root
     }
@@ -55,12 +59,16 @@ class CategoryNewsFragment : Fragment(), NewsItemClickListener {
         viewModel.categoryNewsLiveData.observe(viewLifecycleOwner) {
             categoryNewsList.clear()
             if (it.isNullOrEmpty()) {
-                binding.categoryNewsRecyclerview.visibility = View.GONE
-                binding.noNewsAvailableTextview.visibility = View.VISIBLE
+                binding.apply {
+                    categoryNewsRecyclerview.visibility = View.GONE
+                    noNewsAvailableTextview.visibility = View.VISIBLE
+                }
             } else {
                 categoryNewsList.addAll(it)
-                binding.noNewsAvailableTextview.visibility = View.GONE
-                binding.categoryNewsRecyclerview.visibility = View.VISIBLE
+                binding.apply {
+                    noNewsAvailableTextview.visibility = View.GONE
+                    categoryNewsRecyclerview.visibility = View.VISIBLE
+                }
             }
 
             binding.categoryNewsRecyclerview.adapter?.notifyDataSetChanged()

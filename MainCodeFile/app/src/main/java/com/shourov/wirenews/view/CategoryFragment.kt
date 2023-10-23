@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.shourov.wirenews.R
 import com.shourov.wirenews.adapter.CategoryListAdapter
 import com.shourov.wirenews.databinding.FragmentCategoryBinding
-import com.shourov.wirenews.`interface`.CategoryItemClickListener
+import com.shourov.wirenews.interfaces.CategoryItemClickListener
 import com.shourov.wirenews.model.CategoryModel
 import com.shourov.wirenews.repository.CategoryRepository
 import com.shourov.wirenews.view_model.CategoryViewModel

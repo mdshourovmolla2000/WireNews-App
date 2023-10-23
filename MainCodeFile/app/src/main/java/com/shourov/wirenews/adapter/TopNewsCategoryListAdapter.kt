@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.shourov.wirenews.R
 import com.shourov.wirenews.databinding.SingleTopNewsCategoryItemLayoutBinding
-import com.shourov.wirenews.`interface`.TopNewsCategoryItemClickListener
+import com.shourov.wirenews.interfaces.TopNewsCategoryItemClickListener
 
 class TopNewsCategoryListAdapter(
     private val itemList: ArrayList<String>,
@@ -25,13 +25,9 @@ class TopNewsCategoryListAdapter(
         return ItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.onBind(itemList[position], position)
-    }
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) = holder.onBind(itemList[position], position)
 
-    override fun getItemCount(): Int {
-        return itemList.size
-    }
+    override fun getItemCount(): Int = itemList.size
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = SingleTopNewsCategoryItemLayoutBinding.bind(itemView)
@@ -40,22 +36,27 @@ class TopNewsCategoryListAdapter(
         fun onBind(currentItem: String, position: Int) {
             //selecting bg color of current selected item
             if (currentIndex == position) {
-                binding.categoryNameCardView.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.themeColor))
-                binding.categoryNameTextview.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
+                binding.apply {
+                    categoryNameCardView.setCardBackgroundColor(ContextCompat.getColor(itemView.context, R.color.themeColor))
+                    categoryNameTextview.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
+                }
             } else {
-                binding.categoryNameCardView.setCardBackgroundColor(Color.parseColor("#EEEEEE"))
-                binding.categoryNameTextview.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+                binding.apply {
+                    categoryNameCardView.setCardBackgroundColor(Color.parseColor("#EEEEEE"))
+                    categoryNameTextview.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+                }
             }
 
-            binding.categoryNameTextview.text = currentItem
-
-            itemView.setOnClickListener {
-                when(currentItem) {
-                    "More" -> itemClickListener.onTopNewsCategoryItemClick(currentItem, position)
-                    else -> {
-                        currentIndex = position
-                        itemClickListener.onTopNewsCategoryItemClick(currentItem, position)
-                        notifyDataSetChanged()
+            binding.apply {
+                categoryNameTextview.text = currentItem
+                categoryNameCardView.setOnClickListener {
+                    when(currentItem) {
+                        "More" -> itemClickListener.onTopNewsCategoryItemClick(currentItem, position)
+                        else -> {
+                            currentIndex = position
+                            itemClickListener.onTopNewsCategoryItemClick(currentItem, position)
+                            notifyDataSetChanged()
+                        }
                     }
                 }
             }

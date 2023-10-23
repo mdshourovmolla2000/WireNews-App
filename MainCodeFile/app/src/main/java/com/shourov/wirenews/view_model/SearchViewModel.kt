@@ -8,10 +8,7 @@ import com.shourov.wirenews.repository.SearchRepository
 
 class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
     private val _searchResultLiveData = MutableLiveData<List<NewsModel>>()
-    val searchResultLiveData : LiveData<List<NewsModel>>
-        get() = _searchResultLiveData
+    val searchResultLiveData : LiveData<List<NewsModel>> get() = _searchResultLiveData
 
-    fun searchNews(title: String){
-        _searchResultLiveData.postValue(repository.searchNews(title))
-    }
+    fun searchNews(title: String) = _searchResultLiveData.postValue(repository.searchNews(title))
 }

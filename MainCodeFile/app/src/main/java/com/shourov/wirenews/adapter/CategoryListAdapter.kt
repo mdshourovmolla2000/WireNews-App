@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shourov.wirenews.R
 import com.shourov.wirenews.databinding.SingleCategoryItemLayoutBinding
-import com.shourov.wirenews.`interface`.CategoryItemClickListener
+import com.shourov.wirenews.interfaces.CategoryItemClickListener
 import com.shourov.wirenews.model.CategoryModel
 import com.shourov.wirenews.utils.loadImage
 
@@ -18,24 +18,19 @@ class CategoryListAdapter(private val itemList: ArrayList<CategoryModel>, privat
         return ItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.onBind(itemList[position])
-    }
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) = holder.onBind(itemList[position])
 
-    override fun getItemCount(): Int {
-        return itemList.size
-    }
+    override fun getItemCount(): Int = itemList.size
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = SingleCategoryItemLayoutBinding.bind(itemView)
 
         @SuppressLint("SetTextI18n")
         fun onBind(currentItem: CategoryModel) {
-            binding.categoryImageImageview.loadImage(currentItem.categoryImage)
-            binding.categoryNameTextview.text = currentItem.categoryName
-
-            binding.categoryCardView.setOnClickListener {
-                itemClickListener.onCategoryItemClick(currentItem)
+            binding.apply {
+                categoryImageImageview.loadImage(currentItem.categoryImage)
+                categoryNameTextview.text = currentItem.categoryName
+                categoryCardView.setOnClickListener { itemClickListener.onCategoryItemClick(currentItem) }
             }
         }
 
