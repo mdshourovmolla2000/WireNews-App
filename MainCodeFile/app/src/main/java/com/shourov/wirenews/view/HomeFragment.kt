@@ -55,11 +55,13 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
                     //make transparent to default dialog
                     alertDialog.window?.setBackgroundDrawable(ColorDrawable(0))
 
-                    dialogBinding.noButton.setOnClickListener { alertDialog.dismiss() }
+                    dialogBinding.apply {
+                        noButton.setOnClickListener { alertDialog.dismiss() }
 
-                    dialogBinding.yesButton.setOnClickListener {
-                        alertDialog.dismiss()
-                        requireActivity().finish()
+                        yesButton.setOnClickListener {
+                            alertDialog.dismiss()
+                            requireActivity().finish()
+                        }
                     }
 
                     alertDialog.show()
@@ -84,23 +86,25 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
 
         observerList()
 
-        binding.topNewsCategoryRecyclerview.adapter = TopNewsCategoryListAdapter(topNewsCategoryList, currentTopNewsCategoryPosition, this@HomeFragment)
-        binding.newsRecyclerview.adapter = NewsListAdapter(newsList, this@HomeFragment)
+        binding.apply {
+            topNewsCategoryRecyclerview.adapter = TopNewsCategoryListAdapter(topNewsCategoryList, currentTopNewsCategoryPosition, this@HomeFragment)
+            newsRecyclerview.adapter = NewsListAdapter(newsList, this@HomeFragment)
 
-        binding.navigationViewMenuIcon.setOnClickListener { binding.drawerLayout.open() }
+            navigationViewMenuIcon.setOnClickListener { drawerLayout.open() }
 
-        binding.navigationView.setNavigationItemSelectedListener {
-            binding.drawerLayout.close()
-            when (it.itemId) {
-                R.id.navigationViewCategoryMenu -> {
-                    findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
+            navigationView.setNavigationItemSelectedListener {
+                drawerLayout.close()
+                when (it.itemId) {
+                    R.id.navigationViewCategoryMenu -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_categoryFragment)
+                    }
+                    R.id.navigationViewAppInfoMenu -> appInfo()
                 }
-                R.id.navigationViewAppInfoMenu -> appInfo()
+                return@setNavigationItemSelectedListener true
             }
-            return@setNavigationItemSelectedListener true
-        }
 
-        binding.searchIcon.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_searchFragment) }
+            searchIcon.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_searchFragment) }
+        }
 
         return binding.root
     }
@@ -115,12 +119,16 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
         viewModel.newsLiveData.observe(viewLifecycleOwner) {
             newsList.clear()
             if (it.isNullOrEmpty()) {
-                binding.newsRecyclerview.visibility = View.GONE
-                binding.noNewsAvailableTextview.visibility = View.VISIBLE
+                binding.apply {
+                    newsRecyclerview.visibility = View.GONE
+                    noNewsAvailableTextview.visibility = View.VISIBLE
+                }
             } else {
                 newsList.addAll(it)
-                binding.noNewsAvailableTextview.visibility = View.GONE
-                binding.newsRecyclerview.visibility = View.VISIBLE
+                binding.apply {
+                    noNewsAvailableTextview.visibility = View.GONE
+                    newsRecyclerview.visibility = View.VISIBLE
+                }
             }
             binding.newsRecyclerview.adapter?.notifyDataSetChanged()
         }
@@ -164,7 +172,7 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
         }
     }
 
-    override fun onNewsItemClick(currentItem: NewsModel) {
+    override fun onNewsItemClick(currentItem: NewsModel, view: View) {
         val bundle = bundleOf(
             "COVER_IMAGE" to currentItem.coverImage,
             "CATEGORY_NAME" to currentItem.categoryName,

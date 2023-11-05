@@ -16,6 +16,7 @@ import com.shourov.wirenews.databinding.FragmentSearchBinding
 import com.shourov.wirenews.interfaces.NewsItemClickListener
 import com.shourov.wirenews.model.NewsModel
 import com.shourov.wirenews.repository.SearchRepository
+import com.shourov.wirenews.utils.KeyboardManager
 import com.shourov.wirenews.view_model.SearchViewModel
 
 class SearchFragment : Fragment(), NewsItemClickListener {
@@ -34,24 +35,28 @@ class SearchFragment : Fragment(), NewsItemClickListener {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        binding.backIcon.setOnClickListener { findNavController().popBackStack() }
-
         viewModel = ViewModelProvider(this, SearchViewModelFactory(SearchRepository()))[SearchViewModel::class.java]
 
         observerList()
 
-        binding.searchNewsRecyclerview.adapter = NewsListAdapter(newsList, this@SearchFragment)
+        binding.apply {
+            backIcon.setOnClickListener {
+                KeyboardManager.hideKeyBoard(requireContext(), it)
+                findNavController().popBackStack()
+            }
+            searchNewsRecyclerview.adapter = NewsListAdapter(newsList, this@SearchFragment)
 
-        binding.clearIcon.setOnClickListener { binding.searchTitleEdittext.text.clear() }
+            clearIcon.setOnClickListener { searchTitleEdittext.text.clear() }
 
-        binding.searchTitleEdittext.doOnTextChanged { text, _, _, _ ->
-            searchText = text.toString()
-            if (searchText.isNotEmpty()){
-                viewModel.searchNews(searchText)
-            } else {
-                newsList.clear()
-                binding.searchNewsRecyclerview.adapter?.notifyDataSetChanged()
-                binding.nothingFoundLayout.visibility = View.GONE
+            searchTitleEdittext.doOnTextChanged { text, _, _, _ ->
+                searchText = text.toString()
+                if (searchText.isNotEmpty()){
+                    viewModel.searchNews(searchText)
+                } else {
+                    newsList.clear()
+                    searchNewsRecyclerview.adapter?.notifyDataSetChanged()
+                    nothingFoundLayout.visibility = View.GONE
+                }
             }
         }
 
@@ -61,21 +66,25 @@ class SearchFragment : Fragment(), NewsItemClickListener {
     private fun observerList() {
         viewModel.searchResultLiveData.observe(viewLifecycleOwner) {
             if (it.isNullOrEmpty()) {
-                binding.searchNewsRecyclerview.visibility = View.GONE
-                binding.nothingFoundLayout.visibility = View.VISIBLE
+                binding.apply {
+                    searchNewsRecyclerview.visibility = View.GONE
+                    nothingFoundLayout.visibility = View.VISIBLE
+                }
             } else {
-                binding.nothingFoundLayout.visibility = View.GONE
-                binding.searchNewsRecyclerview.visibility = View.VISIBLE
-
                 newsList.clear()
                 newsList.addAll(ArrayList(it).asReversed())
 
-                binding.searchNewsRecyclerview.adapter?.notifyDataSetChanged()
+                binding.apply {
+                    nothingFoundLayout.visibility = View.GONE
+                    searchNewsRecyclerview.visibility = View.VISIBLE
+                }
             }
+            binding.searchNewsRecyclerview.adapter?.notifyDataSetChanged()
         }
     }
 
-    override fun onNewsItemClick(currentItem: NewsModel) {
+    override fun onNewsItemClick(currentItem: NewsModel, view: View) {
+        KeyboardManager.hideKeyBoard(requireContext(), view)
         val bundle = bundleOf(
             "COVER_IMAGE" to currentItem.coverImage,
             "CATEGORY_NAME" to currentItem.categoryName,

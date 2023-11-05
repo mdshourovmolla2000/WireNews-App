@@ -75,7 +75,7 @@ class CategoryNewsFragment : Fragment(), NewsItemClickListener {
         }
     }
 
-    override fun onNewsItemClick(currentItem: NewsModel) {
+    override fun onNewsItemClick(currentItem: NewsModel, view: View) {
         val bundle = bundleOf(
             "COVER_IMAGE" to currentItem.coverImage,
             "CATEGORY_NAME" to currentItem.categoryName,

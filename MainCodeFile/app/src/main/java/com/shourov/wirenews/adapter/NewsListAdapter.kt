@@ -32,7 +32,7 @@ class NewsListAdapter(private val itemList: ArrayList<NewsModel>, private val it
                 newsCoverImageview.loadImage(currentItem.coverImage)
                 categoryNameTextview.text = currentItem.categoryName.uppercase()
                 newsTitleTextview.text = currentItem.newsTitle
-                itemCardView.setOnClickListener { itemClickListener.onNewsItemClick(currentItem) }
+                itemCardView.setOnClickListener { itemClickListener.onNewsItemClick(currentItem, it) }
             }
         }
 

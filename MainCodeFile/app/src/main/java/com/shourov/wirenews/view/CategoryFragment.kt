@@ -38,9 +38,10 @@ class CategoryFragment : Fragment(), CategoryItemClickListener {
 
         observerList()
 
-        binding.categoryRecyclerview.adapter = CategoryListAdapter(categoryList, this@CategoryFragment)
-
-        binding.backIcon.setOnClickListener { findNavController().popBackStack() }
+        binding.apply {
+            categoryRecyclerview.adapter = CategoryListAdapter(categoryList, this@CategoryFragment)
+            backIcon.setOnClickListener { findNavController().popBackStack() }
+        }
 
         return binding.root
     }
