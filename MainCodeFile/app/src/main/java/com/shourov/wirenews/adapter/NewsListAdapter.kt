@@ -35,6 +35,5 @@ class NewsListAdapter(private val itemList: ArrayList<NewsModel>, private val it
                 itemCardView.setOnClickListener { itemClickListener.onNewsItemClick(currentItem, it) }
             }
         }
-
     }
 }

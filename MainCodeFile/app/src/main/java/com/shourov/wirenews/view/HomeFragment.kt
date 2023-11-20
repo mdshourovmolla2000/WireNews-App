@@ -1,6 +1,8 @@
 package com.shourov.wirenews.view
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -135,6 +137,7 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun appInfo() {
         val builder = AlertDialog.Builder(requireContext())
         val dialogBinding = DialogAppInfoBinding.inflate(layoutInflater)
@@ -148,10 +151,17 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(0))
 
         try {
-            val pInfo = requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
-            val appVersion = pInfo.versionCode.toString() + "." + pInfo.versionName.toString()
+            val packageInfo = requireActivity().packageManager.getPackageInfo(requireActivity().packageName, 0)
+            val appVersionName = packageInfo.versionName
+            val appVersionCode = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                packageInfo.longVersionCode.toString()
+            } else {
+                @Suppress("DEPRECATION")
+                packageInfo.versionCode.toString()
+            }
+            val appVersion = "$appVersionCode.$appVersionName"
             dialogBinding.appVersionTextview.text = "Version: $appVersion"
-        } catch (e: Exception) {
+        } catch (e: PackageManager.NameNotFoundException) {
             dialogBinding.appVersionTextview.text = "Version 1.1.0"
         }
 
@@ -182,6 +192,7 @@ class HomeFragment : Fragment(), TopNewsCategoryItemClickListener, NewsItemClick
         findNavController().navigate(R.id.action_homeFragment_to_fullNewsFragment, bundle)
     }
 }
+
 
 
 

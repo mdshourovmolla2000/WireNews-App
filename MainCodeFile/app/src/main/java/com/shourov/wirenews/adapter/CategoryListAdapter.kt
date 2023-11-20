@@ -33,6 +33,5 @@ class CategoryListAdapter(private val itemList: ArrayList<CategoryModel>, privat
                 categoryCardView.setOnClickListener { itemClickListener.onCategoryItemClick(currentItem) }
             }
         }
-
     }
 }
