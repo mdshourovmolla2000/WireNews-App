@@ -1,6 +1,8 @@
 <h3 align="center">WireNews-App</h3>
 <p align="center">News app with kotlin (MVVM)</p>
 
+<p align="center">At present, the project is not linked to any server, and all the data used is merely for demonstration purposes.</p>
+
 &nbsp;
 ## 📜 **Features**
     ▪ Latest News on Homepage
